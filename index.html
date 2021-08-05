@@ -40,7 +40,7 @@
                                         <h2 class="fs-title">Player Information</h2>
 
 
-
+                                        <input type="hidden" id="id">
                                         <input class="form-control py-2 rounded-pill mr-1 pr-5" type="email" name="email" placeholder="Email Id*" id="email_id"/>
                                         <input class="form-control py-2 rounded-pill mr-1 pr-5 " type="Mobile No" name="mno" placeholder="Mobile no*" id="contact_no"/>
                                         <input class="form-control py-2 rounded-pill mr-1 pr-5" type="mobile no" namne="amno" placeholder="Alternate Mobile no*" id="contact_no2"/>
@@ -265,6 +265,14 @@
     <script>
         $(document).ready(function() {
 
+             
+             $.ajax({
+                 type: "GET",
+                 url: "https://omnisoftwares1.pythonanywhere.com/mcl/max",
+                 success: function (response) {
+                     $("#id").val(parseInt(response)+1)
+                 }
+             });
             var current_fs, next_fs, previous_fs; //fieldsets
             var opacity;
 
