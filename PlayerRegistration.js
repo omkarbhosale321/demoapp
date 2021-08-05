@@ -6,7 +6,8 @@
 
  $("#save").click(function (e) { 
  
-        
+    $("#save").attr("disabled",true)
+               
 
  const rbs = document.querySelectorAll('input[name="city"]');
             let selectedValue;
@@ -19,7 +20,7 @@
  
  const rbs_ = document.querySelectorAll('input[name="skills"]');
             let selectedValue_;
-            for (const rb of rbs) {
+            for (const rb of rbs_) {
                 if (rb.checked) {
                     selectedValue_ = rb.value;
                     break;
@@ -28,6 +29,7 @@
              
     var data=
     {
+     player_id:$("#id").val(),
      full_name:$("#full_name").val(),
      email_id:$("#email_id").val(),
      contact_no:$("#contact_no").val(),
@@ -50,15 +52,13 @@
     }
     $.ajax({
         type: "POST",
-        url: "save_player",
+        url: "https://omnisoftwares1.pythonanywhere.com/mcl/save_player",
         contentType: "application/json; charset=utf-8",
       
         data:JSON.stringify(data),
         success: function (response) {
-            
             swal("","Saved Successfully","success")
-            $("#hidden_id").val(response.id)
-            $("#form_pre").submit()
+            setTimeout(function(){location.reload(),3000})
         }
     }); 
  });
